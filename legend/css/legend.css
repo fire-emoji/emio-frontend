@@ -1,12 +1,30 @@
 #legend{
     margin-top:30%;
-    box-shadow: 10px 10px 5px #888888;
+    line-height: 0%;
+}
+
+#trueContainer{
+/*    box-shadow: 0px 3px 10px #888888;*/
+    width:25%;
+    height:161px;
+    
+}
+
+#legendList{
+    position:relative;
+    right:25%;
+    
+        
 }
 
 .legendDetail{
-    margin-top:1%; 
+    color:slategrey;
+
 }
 
+.legendIcons{
+    line-height:5%; 
+}
 
 #happiness{
     color:blue;
