@@ -1,0 +1,29 @@
+#legend{
+    margin-top:30%;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.legendDetail{
+    margin-top:1%; 
+}
+
+
+#happiness{
+    color:blue;
+}
+
+#joy{
+    color:yellow; 
+}
+
+#disgust{
+    color:greenyellow;
+}
+
+#fear{
+    color:mediumpurple;
+}
+
+#anger{
+    color:red; 
+}
