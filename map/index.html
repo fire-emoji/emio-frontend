@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="emio">
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <!-- Compiled and minified CSS -->
+    <script src="https://code.angularjs.org/1.3.0-rc.1/angular.min.js"></script>
+    <script src="//code.angularjs.org/1.3.0-rc.2/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.3.0-rc.2/angular-resource.min.js"></script>
     <link rel="stylesheet" href="css/materialize.css" media="screen,projection">
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/font-awesome.css" />
@@ -10,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
 
     <!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
 
     <meta charset="utf-8">
@@ -43,45 +46,56 @@
       <!--   Statistics Modal    -->
         <div id="statsModal" class="modal">
                 <div class="modal-content row">
+                    <i class="modal-close material-icons exitModal">call_made</i>
                     <div class="modalHeader">
-                        <h4>Settings</h4>
+                        <h4>Filter</h4>
                     </div>
-                  <form class="col s6 modalInputContainer">
+                  <form novalidate class="modalInputContainer" action="#">
+                     <!-- KEY WORDS -->
                       <div class="row">
                         <div class="input-field col s11">
-                            <input id="location" type="text" class="validate">
-                            <label for="location">Location</label>
-                        </div>
-                        </div>
-                       <div class="row">
-                            <div class="input-field col s11">
-                                <input id="radius" type="text" class="validate">
-                                <label for="location">Radius</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="input-field col s11">
-                            <input id="location" type="text" class="validate">
-                            <label for="location">Placeholder</label>
+                            <input id="location" type="text" class="novalidate">
+                            <label for="location">Key Word</label>
                         </div>
                       </div>
-                  </form>
-                  <form class="col s4 modalCheckboxContainer">
+                  <!-- <form class="col s4 modalCheckboxContainer" action="#"> -->
+                  <div class="col s4">
+                    <!-- JOY -->
                     <p>
-                      <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                      <label for="filled-in-box">Filled in</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                      <label for="filled-in-box">Filled in</label>
-                    </p>
-                    <p>
-                      <input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-                      <label for="filled-in-box">Filled in</label>
-                    </p>
-                 </form>
+                      <input type="checkbox" class="filled-in" id="joy-checkbox" />
+                      <label for="joy-checkbox">Joy</label>
 
+                    </p>
+                    <!-- SADNESS  -->
+                    <p>
+                      <input type="checkbox" class="filled-in" id="sadness-checkbox" />
+                      <label for="sadness-checkbox" >Sadness</label>
+                    </p>
+
+                  </div>
+
+                  <div class="col s4">
+                 <!-- <form class="col s4 modalCheckboxContainer"> -->
+                   <!-- FEAR -->
+                   <p>
+                     <input type="checkbox" class="filled-in" id="fear-checkbox"  />
+                     <label for="fear-checkbox">Fear</label>
+                   </p>
+                   <!-- ANGER -->
+                   <p>
+                     <input type="checkbox" class="filled-in" id="anger-checkbox"  />
+                     <label for="anger-checkbox">Anger</label>
+                   </p>
                 </div>
+                <div class="col s4">
+                  <!-- DISGUST -->
+                  <p>
+                    <input type="checkbox" class="filled-in" id="disgust-checkbox"  />
+                    <label for="disgust-checkbox">Disgust</label>
+                  </p>
+                </div>
+              </form>
+              </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Update</a>
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat settingsCancel">Cancel</a>
@@ -91,26 +105,74 @@
 
 
         <!--     Travel Modal        -->
-        <div id="travelModal" class="modal">
+        <div ng-controller="TravelController" id="travelModal" class="modal">
                 <div class="modal-content">
                     <div class="modalHeader">
+                        <i class="modal-close material-icons exitModal">call_made</i>
                         <h4>Travel</h4>
                     </div>
-                  <form class="col s6 modalInputContainer">
+
+                  <form class="col s12 modalInputContainer">
                       <div class="row">
-                        <div class="input-field col s5" id="modalBudget">
-                            <input id="budget" type="text" class="validate">
+                        <div class="input-field col s12" id="modalBudget">
+                            <input ng-model="user.budget" id="budget" type="number" class="validate">
                             <label for="budget">Budget</label>
                         </div>
                       </div>
+                      <div class="row">
+                        <div class="input-field col s12" id="modalAirport">
+                          <input ng-model="user.airport" id="airport" type="text" class="validate">
+                          <label for="airport">Airport Code</label>
+                        </div>
+                      </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Update</a>
-                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat settingsCancel">Cancel</a>
+                  <a class="modal-action waves-effect waves-green btn-flat"><input type="submit" ng-click="submit" ng-match="airportCheck" value="Update" /></a>
+                  <a class="modal-action waves-effect waves-green btn-flat settingsCancel"><input type="button" ng-click="reset()" value="Reset" /></a>
                 </div>
         </div>
 
         <!--     /Travel Modal        -->
+
+        <!-- AMODEUS MODAL -->
+
+        <div id="amodeusModal" class="modal">
+                <div class="modal-content">
+                    <div class="modalHeader">
+                        <i class="modal-close material-icons exitModal">call_made</i>
+                        <h4>Flight Listings</h4>
+                    </div>
+                  <div class="col s12">
+                    <table>
+                       <thead>
+                         <tr>
+                             <th data-field="destination">Destination</th>
+                             <th data-field="departure">Departure Date</th>
+                             <th data-field="price">Price</th>
+                             <th data-field="airline">Airline</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <tr data-ng-repeat="result in results">
+                            <td data-title="'Destination'">{{result.destination}}</td>
+                            <td data-title="'Departure'">{{result.departure_date}}</td>
+                            <td data-title="'Price'" >{{result.price}}</td>
+                            <td data-title="'Airline'" >{{result.airline}}</td>
+                          </tr>
+                         </tr>
+                      </tbody>
+                     </table>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="waves-effect waves-green btn-flat">Update</a>
+                  <a href="#!" class="waves-effect waves-green btn-flat settingsCancel">Cancel</a>
+                </div>
+        </div>
+
+        <!-- /AMODEUS MODAL -->
 
 
 
@@ -119,17 +181,33 @@
         <!--   Health Modal     -->
             <div id="healthModal" class="modal">
                 <div class="modal-content">
+                  <i class="modal-close material-icons exitModal">call_made</i>
                   <h4>Modal Header</h4>
-                  <p>A bunch of text</p>
                 </div>
                 <div class="modal-footer">
-                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Update</a>
-                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat settingsCancel">Cancel</a>
+                  <a class=" waves-effect waves-green btn-flat">Update</a>
+                  <a class=" waves-effect waves-green btn-flat settingsCancel">Cancel</a>
                 </div>
             </div>
         <!--    /Health Modal     -->
 
+        <script>angular.module('emio', [])
+            .controller('TravelController', ['$scope', function($scope) {
+              $scope.master = {};
 
+              $scope.update = function(user) {
+                $scope.master = angular.copy(user);
+              };
+
+              $scope.reset = function() {
+                $scope.user = angular.copy($scope.master);
+              };
+
+              $scope.reset();
+            }]);
+</script>
+
+    <script type="text/javascript" src="js/formValidation.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="js/materialize.js"></script>
     <!-- <script src="js/initializeMaterialize.js"></script> -->

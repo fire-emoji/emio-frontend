@@ -87,12 +87,17 @@
       align-content: center;
   }
 
+  .exitModal{
+    float:right;
+    
+  }
+
 
   /* END FLOATING ACTION BUTTON */
 
   /* 3. SEARCH BAR*/
   input#pac-input{
-    margin-top:6%;
+    margin-top:7%;
     margin-left:38%;
   }
 
