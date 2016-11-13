@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<!--  Font awesome import        -->
-      <link rel="stylesheet" href="css/font-awesome.min.css">
-<!--   styles import     -->
-    <link rel="stylesheet" href="css/styles.css">
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="css/materialize.css" media="screen,projection">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overlock" rel="stylesheet">
 
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
+    <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 
-    <body>
-        <!--Importing jQuery before materialize.js-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script type="text/javascript" src="js/menu.js"></script>
-        
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large red">
-                <i class="large material-icons">mode_edit</i>
-            </a>
-            <ul>
-                <li><a href="#statsModal" class="btn-floating yellow darken-1" id="stats"><i class="fa fa-cog fa-md"></i></a></li>
-                
-                <li><a href="#travelModal" class="btn-floating blue" id="travel"><i class="fa fa-plane fa-md"></i></a></li>
-                
-                <li><a href='#healthModal' class="btn-floating red button-collapse"><i class="fa fa-heartbeat fa-md"></i></a></li>
-                
-            </ul>
-        </div> 
-        
-        
-        
-        
-        <!--   Statistics Modal    -->
+
+    <meta charset="utf-8">
+    <title>em.io</title>
+
+  </head>
+  <body>
+    <h2 class="heading white-text">em.i<i class="fa fa-smile-o" aria-hidden="true"></i></h2>
+    <input id="pac-input" class="controls" type="text" placeholder="Search">
+    <div id="map"></div>
+
+
+
+    <!-- FLOATING ACTION BUTTON -->
+     <div class="fixed-action-btn">
+       <a class="btn-floating btn-large blue-grey lighten-2">
+         <i class="large material-icons">mode_edit</i>
+       </a>
+        <ul>
+            <li><a href="#statsModal" class="btn-floating yellow darken-1" id="stats"><i class="fa fa-cog fa-md"></i></a></li>
+            <li><a href="#travelModal" class="btn-floating blue" id="travel"><i class="fa fa-plane fa-md"></i></a></li>
+            <li><a href='#healthModal' class="btn-floating red button-collapse"><i class="fa fa-heartbeat fa-md"></i></a></li>
+        </ul>
+      </div>
+
+
+
+      <!-- FLOATING ACTION BUTTON MODALS  -->
+
+      <!--   Statistics Modal    -->
         <div id="statsModal" class="modal">
                 <div class="modal-content row">
                     <div class="modalHeader">
@@ -76,7 +80,7 @@
                       <label for="filled-in-box">Filled in</label>
                     </p>
                  </form>
-                    
+
                 </div>
                 <div class="modal-footer">
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Update</a>
@@ -84,8 +88,8 @@
                 </div>
         </div>
         <!--    /Statistics Modal    -->
-        
-        
+
+
         <!--     Travel Modal        -->
         <div id="travelModal" class="modal">
                 <div class="modal-content">
@@ -105,13 +109,13 @@
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat settingsCancel">Cancel</a>
                 </div>
         </div>
-        
+
         <!--     /Travel Modal        -->
-        
-        
-        
-        
-        
+
+
+
+
+
         <!--   Health Modal     -->
             <div id="healthModal" class="modal">
                 <div class="modal-content">
@@ -124,8 +128,14 @@
                 </div>
             </div>
         <!--    /Health Modal     -->
-        
-        
-        
-    </body>
-  </html>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <!-- <script src="js/initializeMaterialize.js"></script> -->
+    <script src="js/maps.js"></script>
+    <script src="js/components.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAByALcbpCxZSAMjEiB-tbTkZ8MGEGQu-4&libraries=places&callback=initAutocomplete"
+         async defer></script>
+  </body>
+</html>
